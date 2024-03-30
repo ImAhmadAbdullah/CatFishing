@@ -1,8 +1,14 @@
 package im.ahmadabdullah.catfishing;
 
-import org.bukkit.*;
-import org.bukkit.entity.*;
-import org.bukkit.event.*;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
+import org.bukkit.entity.Cat;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
@@ -12,8 +18,6 @@ import java.util.Random;
 
 public final class CatFishing extends JavaPlugin implements Listener {
     private final Random random = new Random();
-    private final String PREFIX = "[CatFishing] ";
-    private final String catchMessage = ChatColor.YELLOW + "You caught a cat!";
     private final double catChance = 0.1;
     private final Sound celebrationSound = Sound.ENTITY_FIREWORK_ROCKET_LAUNCH;
     private final Particle celebrationParticle = Particle.FIREWORKS_SPARK;
@@ -26,12 +30,12 @@ public final class CatFishing extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
-        getLogger().info(PREFIX + "Plugin enabled!");
+        getLogger().info("The plugin has been enabled.");
     }
 
     @Override
     public void onDisable() {
-        getLogger().info(PREFIX + "Plugin disabled!");
+        getLogger().info("The plugin is shutting down.");
     }
 
     @EventHandler
@@ -46,7 +50,7 @@ public final class CatFishing extends JavaPlugin implements Listener {
             for (PotionEffect effect : celebrationEffects) {
                 player.addPotionEffect(effect);
             }
-            player.sendMessage(ChatColor.GREEN + PREFIX + catchMessage);
+            player.sendMessage(ChatColor.GREEN + "[CatFishing] " + ChatColor.YELLOW + "You caught a cat!");
             event.setExpToDrop(0);
             event.setCancelled(true);
         }
