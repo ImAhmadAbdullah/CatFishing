@@ -1,0 +1,4 @@
+name: CatFishing
+version: '${version}'
+main: im.ahmadabdullah.catfishing.CatFishing
+api-version: '1.20'
